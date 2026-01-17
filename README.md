@@ -35,6 +35,23 @@ Recreating the `strlen` function using pointer arithmetic.
 - Avoids array indexing (`i++`).
 - Directly manipulates memory addresses (`s++`) to traverse the string segment.
 
+### 6. Manual Integer Parser in C 🛠️
+
+A low-level exploration of standard library functions. This project recreates the logic of `scanf` from scratch to understand stream I/O, ASCII conversion, and pointer manipulation.
+
+#### How It Works
+Instead of using the standard `scanf("%d")`, I built a custom parser (`my_scanf`) that:
+1.  **Manages the Input Stream:** Uses `getchar()` to read standard input byte-by-byte.
+2.  **Handles Whitespace:** Manually skips spaces, tabs, and newlines.
+3.  **Performs ASCII Math:** Converts character data into integer types (e.g., `'5'` -> `5`).
+4.  **Uses Pointers:** Modifies variables in the calling function via memory addresses (Pass-by-Reference).
+
+## The Logic
+The core conversion logic uses a standard algorithm:
+```c
+total = (total * 10) + (char - '0');
+```
+
 ## 🚀 How to Run
 Compile any file using GCC:
 ```bash
