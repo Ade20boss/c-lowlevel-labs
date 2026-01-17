@@ -1,22 +1,40 @@
 #include <stdio.h>
+const unsigned int value = 4294967295;
 
-void my_scanf(int *ptr){
-    int total = 0;
+void my_scanf(unsigned int *ptr){
+    unsigned int total = 0;
     int c = getchar();
 
-    while(c == ' ' || c == '\n' || c == '\t'){
-        c = getchar();
-    }
-    while (c >= '0' && c <= '9'){
-        c = c - '0';
-        total = (total * 10) + c;
-        c = getchar();
+    while (c != EOF ){
+        if (c >= '0' && c <= '9'){
+            c = c - '0';
+            if (total <= (value - c)/10){
+                total = (total * 10) + c;
+                c = getchar();
+            }
+            else{
+                printf("Overflow detected! Discarding excess input.\n");
+                while (c != '\n' && c != EOF) {
+                    c = getchar();
+                }
+                break;
+
+            }
+        }
+        else if(c == ' ' || c == '\t'){
+            c = getchar();
+            continue;
+        }
+        else{
+            break;
+        }
+    
     }
     *ptr = total;
 }
 
-void input_validator(const int PIN){
-    int entry;
+void input_validator(const unsigned int PIN){
+    unsigned int entry;
     do {
         printf("Enter Pin: ");
         my_scanf(&entry);
